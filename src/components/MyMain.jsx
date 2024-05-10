@@ -1,15 +1,15 @@
-import { Row } from "react-bootstrap";
+import { NavLink, Row } from "react-bootstrap";
 
 const MyMain = () => {
   return (
     <main class="col-12 col-md-9 offset-md-3 mainPage">
       <Row>
         <div class="col-9 col-lg-11 mainLinks d-none d-md-flex">
-          <a href="#1">TRENDING</a>
-          <a href="#1">PODCAST</a>
-          <a href="#1">MOODS AND GENRES</a>
-          <a href="#1">NEW RELEASES</a>
-          <a href="#1">DISCOVER</a>
+          <NavLink href="#1">TRENDING</NavLink>
+          <NavLink href="#1">PODCAST</NavLink>
+          <NavLink href="#1">MOODS AND GENRES</NavLink>
+          <NavLink href="#1">NEW RELEASES</NavLink>
+          <NavLink href="#1">DISCOVER</NavLink>
         </div>
       </Row>
       <div class="row">
