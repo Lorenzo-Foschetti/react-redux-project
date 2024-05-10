@@ -8,9 +8,9 @@ const MySidebar = () => {
       id="sidebar"
     >
       <Container className="flex-column align-items-start">
-        <a className="navbar-brand" href="index.html">
+        <NavLink className="navbar-brand" href="index.html">
           <img src={logo} alt="Spotify Logo" width="131" height="40" />
-        </a>
+        </NavLink>
         <Button
           className="navbar-toggler"
           type="button"
