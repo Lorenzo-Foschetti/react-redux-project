@@ -2,17 +2,27 @@ import { NavLink, Row } from "react-bootstrap";
 import SongCard from "./SongCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getsongsAction } from "../redux/actions";
+import {
+  getEminemSongs,
+  getNirvanaSongs,
+  getQueenSongs,
+  getsongsAction,
+} from "../redux/actions";
 
 const MyMain = () => {
   const dispatch = useDispatch();
+  const dispatchEminemSongs = useDispatch();
+  const dispatchQueenSongs = useDispatch();
+  const dispatchNirvanaSongs = useDispatch();
   const mySong = useSelector((state) => state.getPlaylist.content);
   const eminemSong = useSelector((state) => state.getPlaylist.eminem);
   const nirvanaSong = useSelector((state) => state.getPlaylist.nirvana);
   const queenSong = useSelector((state) => state.getPlaylist.queen);
 
   useEffect(() => {
-    dispatch(getsongsAction("eminem"));
+    dispatchEminemSongs(getEminemSongs("eminem"));
+    dispatchQueenSongs(getQueenSongs("queen"));
+    dispatchNirvanaSongs(getNirvanaSongs("nirvana"));
   }, []);
   return (
     <main className="col-12 col-md-9 offset-md-3 mainPage">
@@ -33,11 +43,10 @@ const MyMain = () => {
               className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
               id="rockSection"
             >
-              {" "}
-              {mySong &&
-                mySong.map((song) => (
-                  <SongCard key={song.id} singleSong={song} />
-                ))}{" "}
+              {eminemSong &&
+                eminemSong
+                  .slice(0, 4)
+                  .map((song) => <SongCard key={song.id} singleSong={song} />)}
             </div>
           </div>
         </div>
@@ -45,22 +54,37 @@ const MyMain = () => {
       <Row>
         <div className="col-10">
           <div id="pop">
-            <h2>Pop Culture</h2>
+            <h2>Queen's tracks</h2>
             <div
               className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
               id="popSection"
-            ></div>
+            >
+              {" "}
+              {queenSong &&
+                queenSong
+                  .slice(0, 4)
+                  .map((song) => (
+                    <SongCard key={song.id} singleSong={song} />
+                  ))}{" "}
+            </div>
           </div>
         </div>
       </Row>
       <Row>
         <div className="col-10">
           <div id="hiphop">
-            <h2>#HipHop</h2>
+            <h2>Nirvana's tracks</h2>
             <div
               className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
               id="hipHopSection"
-            ></div>
+            >
+              {nirvanaSong &&
+                nirvanaSong
+                  .slice(0, 4)
+                  .map((song) => (
+                    <SongCard key={song.id} singleSong={song} />
+                  ))}{" "}
+            </div>
           </div>
         </div>
       </Row>

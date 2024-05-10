@@ -9,9 +9,9 @@ const MyPlayer = () => {
   return (
     <Container fluid className=" fixed-bottom bg-container pt-1">
       <div className="row h-100">
-        <div lg={10} className="offset-lg-2">
+        <div lg={10} className="offset-lg-2 ">
           <div className="row h-100 flex-column justify-content-center align-items-center">
-            <div xs={6} md={4} className=" playerControls">
+            <div className="col-6 col-md-4 playerControls">
               <div className="d-flex">
                 <NavLink href="#1">
                   <img src={shuffle} alt="shuffle" />
