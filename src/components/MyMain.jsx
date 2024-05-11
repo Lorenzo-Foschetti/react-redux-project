@@ -1,4 +1,4 @@
-import { NavLink, Row } from "react-bootstrap";
+import { NavLink, Row, useAccordionButton } from "react-bootstrap";
 import SongCard from "./SongCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -14,16 +14,18 @@ const MyMain = () => {
   const dispatchEminemSongs = useDispatch();
   const dispatchQueenSongs = useDispatch();
   const dispatchNirvanaSongs = useDispatch();
-  const mySong = useSelector((state) => state.getPlaylist.content);
+  const mySong = useSelector((state) => state.search.content);
   const eminemSong = useSelector((state) => state.getPlaylist.eminem);
   const nirvanaSong = useSelector((state) => state.getPlaylist.nirvana);
   const queenSong = useSelector((state) => state.getPlaylist.queen);
+  const tracksSearched = useSelector((state) => state.getPlaylist.content);
 
   useEffect(() => {
     dispatchEminemSongs(getEminemSongs("eminem"));
     dispatchQueenSongs(getQueenSongs("queen"));
     dispatchNirvanaSongs(getNirvanaSongs("nirvana"));
-  }, []);
+    dispatch(getsongsAction(mySong));
+  }, [mySong]);
   return (
     <main className="col-12 col-md-9 offset-md-3 mainPage">
       <Row>
@@ -35,6 +37,22 @@ const MyMain = () => {
           <NavLink href="#1">DISCOVER</NavLink>
         </div>
       </Row>
+      <div className="row">
+        <div className="col-10">
+          <div id="rock">
+            <h2>Your search!</h2>
+            <div
+              className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+              id="rockSection"
+            >
+              {tracksSearched &&
+                tracksSearched
+                  .slice(0, 4)
+                  .map((song) => <SongCard key={song.id} singleSong={song} />)}
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="row">
         <div className="col-10">
           <div id="rock">

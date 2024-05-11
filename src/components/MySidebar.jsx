@@ -1,7 +1,27 @@
-import { Button, Container, ListGroup, Nav, NavLink } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Form,
+  InputGroup,
+  ListGroup,
+  Nav,
+  NavLink,
+} from "react-bootstrap";
 import logo from "../assets/logo/logo.png";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchAction } from "../redux/actions";
 
 const MySidebar = () => {
+  const [search, setSearch] = useState();
+  const dispatch = useDispatch();
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    dispatch(searchAction(search));
+  };
   return (
     <Nav
       className="navbar navbar-expand-md fixed-left justify-content-between"
@@ -44,21 +64,17 @@ const MySidebar = () => {
                   <i className="bi bi-book-fill"></i>&nbsp; Your Library
                 </a>
               </ListGroup.Item>
-              <ListGroup.Item className="bgBlack">
-                <div className="input-group mt-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <div className="input-group-append">
-                    <Button className="bgBlack btn btn-outline-secondary btn-sm h-100">
-                      GO
-                    </Button>
-                  </div>
-                </div>
-              </ListGroup.Item>
+              <InputGroup className="mb-3">
+                <Form.Control
+                  placeholder="Cerca"
+                  aria-label="Cerca"
+                  aria-describedby="basic-addon2"
+                  onChange={handleSearch}
+                />
+                <Button variant="outline-secondary" onClick={handleSubmit}>
+                  Go
+                </Button>
+              </InputGroup>
             </ListGroup>
           </div>
         </div>

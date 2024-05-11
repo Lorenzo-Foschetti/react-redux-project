@@ -2,6 +2,7 @@ export const GET_PLAYLIST = "GET_PLAYLIST";
 export const GET_EMINEM = "GET_EMINEM";
 export const GET_NIRVANA = "GET_NIRVANA";
 export const GET_QUEEN = "GET_QUEEN";
+export const SEARCH_QUERY = "SEARCH_QUERY";
 
 export const ADD_TO_FAVOURITES = "ADD_TO_FAVOURITES";
 export const REMOVE_FROM_FAVOURITES = "REMOVE_FROM_FAVOURITES";
@@ -93,3 +94,8 @@ export const getQueenSongs = (artist) => {
     }
   };
 };
+
+export const searchAction = (searchValue) => ({
+  type: SEARCH_QUERY,
+  payload: searchValue,
+});
