@@ -1,4 +1,4 @@
-import { Container, NavLink } from "react-bootstrap";
+import { Col, Container, NavLink } from "react-bootstrap";
 import prev from "../assets/playerbuttons/prev.png";
 import shuffle from "../assets/playerbuttons/shuffle.png";
 import play from "../assets/playerbuttons/play.png";
@@ -7,12 +7,25 @@ import repeat from "../assets/playerbuttons/repeat.png";
 import { useSelector } from "react-redux";
 
 const MyPlayer = () => {
-  const selectedSong = useSelector((state) => state.selectedsong.content);
+  const selectedSong = useSelector((state) => state.selectedSong.content);
+
   return (
     <Container fluid className=" fixed-bottom bg-container pt-1">
       <div className="row h-100">
         <div lg={10} className="offset-lg-2 ">
           <div className="row h-100 flex-column justify-content-center align-items-center">
+            <div className="col-6 col-md-4 d-flex align-items-center justify-content-end">
+              {selectedSong && (
+                <>
+                  <img src={selectedSong.artist.picture_small} alt="" />
+                  <div className="ms-3 text-secondary">
+                    <p className="m-0"> {selectedSong.title}</p>
+                    <p className="m-0"> {selectedSong.artist.name}</p>{" "}
+                  </div>
+                </>
+              )}
+            </div>
+
             <div className="col-6 col-md-4 playerControls">
               <div className="d-flex">
                 <NavLink href="#1">

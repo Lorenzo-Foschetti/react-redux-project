@@ -5,10 +5,10 @@ const SongCard = ({ singleSong }) => {
   const dispatch = useDispatch();
   return (
     <div
-      onClick={(selectedSong) =>
+      onClick={() =>
         dispatch({
           type: SELECTED_SONG,
-          payload: selectedSong,
+          payload: singleSong,
         })
       }
       class="col text-center"
