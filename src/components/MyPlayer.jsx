@@ -4,8 +4,10 @@ import shuffle from "../assets/playerbuttons/shuffle.png";
 import play from "../assets/playerbuttons/play.png";
 import next from "../assets/playerbuttons/next.png";
 import repeat from "../assets/playerbuttons/repeat.png";
+import { useSelector } from "react-redux";
 
 const MyPlayer = () => {
+  const selectedSong = useSelector((state) => state.selectedsong.content);
   return (
     <Container fluid className=" fixed-bottom bg-container pt-1">
       <div className="row h-100">
